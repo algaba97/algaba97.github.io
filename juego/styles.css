@@ -15,7 +15,21 @@ body {
 a {
   color: #c39;
 }
-
+.s1{
+  margin-left: 20em;
+  margin-right: 20em;
+  background-color: #FDE1B3;
+}
+.s2{
+	margin-left: 20em;
+  margin-right: 20em;
+  background-color: #FEDBA3;
+}
+h1 {
+  font-size: 50px;
+  background-color: #C5F148;
+  font-family: Impact, Charcoal, sans-serif;
+}
 main {
   margin: 2rem 0;
   text-align: center;
