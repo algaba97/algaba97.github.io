@@ -152,9 +152,7 @@ function render() {
 
 
 }
-function final(){
 
-}
  var Cuenta = function(){
     this.startTimer = function() {
         this.start = new Date().getTime();
