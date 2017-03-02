@@ -18,6 +18,7 @@ var background;
 var timer, timer2, text;
 
 function create() {
+	game.time.desiredFps = 5;
   this.set = 0;
   this.it = 0;
   this.preguntas = new Array();
