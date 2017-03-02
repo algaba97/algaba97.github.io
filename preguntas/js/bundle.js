@@ -21,6 +21,7 @@ function create() {
 	game.time.desiredFps = 5;
   this.set = 0;
   this.it = 0;
+   this.tiempos = new Array();
   this.preguntas = new Array();
   this.preguntas.push("1.	Las vacas son mamíferos. ");
   this.preguntas.push("2.	La mandarina es una fruta.");
@@ -162,7 +163,15 @@ function endtimer() {
       game.time.reset();
       timer =game.time.create();
   }
-
+function final(){
+	for(var i = 0; i < 20 ; i++){
+       var vida = this.game.add.sprite(250+ i*30, 230 , 'corasao');
+	   var texto = this.game.add.text(0,i*15,i +"."+ this.tiempos[i]);
+  texto.font = "Times New Roman";
+  texto.fontSize = 15;
+  texto.fill = "white";
+	}
+}
 function adelante(){
 
 this.cuenta.startTimer();
@@ -175,7 +184,7 @@ if(this.set == 1){
 else{
     this.texto2.text = this.preguntas[this.it];
 }
-if(this.it != 40)  this.it ++;
+if(this.it == 40)  final();
   button1 = game.add.button(game.world.centerX-300, 400, 'button5', actionOnClick, this, 2, 1, 0);
   button2 = game.add.button(game.world.centerX+150, 400, 'button4', actionOnClick, this, 2, 1, 0);
   //timer = game.time.create();
@@ -187,7 +196,9 @@ function actionOnClick () {
 button2.destroy();
 button1.destroy();
 if(this.cuenta.stopTimer() > 1){
-this.texto.text = this.cuenta.stopTimer()/1000+" s";
+	var tiempo  =this.cuenta.stopTimer()/1000;
+	this.tiempos.push(tiempo);
+this.texto.text = tiempo +" s";
 }
 button3 = game.add.button(game.world.centerX-80, 400, 'button3', adelante, this, 2, 1, 0);
 
