@@ -9,6 +9,7 @@ function preload() {
     game.load.spritesheet('button4', 'assets/buttons/FALSO.png', 193, 71);
     game.load.spritesheet('button5', 'assets/buttons/verdadero.png', 193, 71);
     game.load.image('background','assets/misc/starfield.jpg');
+    this.tiempos= new Array();
 
 }
 
@@ -18,10 +19,9 @@ var background;
 var timer, timer2, text;
 
 function create() {
-	game.time.desiredFps = 5;
+
   this.set = 0;
   this.it = 0;
-   this.tiempos = new Array();
   this.preguntas = new Array();
   this.preguntas.push("1.	Las vacas son mamíferos. ");
   this.preguntas.push("2.	La mandarina es una fruta.");
@@ -63,7 +63,7 @@ function create() {
   this.preguntas.push("38.	La pera es una fruta. ");
   this.preguntas.push("39.	El baloncesto es un deporte colectivo. ");
   this.preguntas.push("40.	Los pimientos son frutas. ");
-  this.preguntas.push("Fin, recarga la página ");
+  this.preguntas.push(" ");
 
 
   this.preguntas2 = new Array();
@@ -107,7 +107,7 @@ this.preguntas2.push("37.	El ratón es un mamífero.");
 this.preguntas2.push("38.	El coco es una fruta.");
 this.preguntas2.push("39.	El paracaidismo es un deporte individual.");
 this.preguntas2.push("40.	El cisne no es un ave.");
-this.preguntas2.push("Fin, recarga la página ");
+this.preguntas2.push(" ");
 
 timer2= 0;
 this.cuenta = new Cuenta();
@@ -137,7 +137,9 @@ function action(){
 button2.destroy();
 button1.destroy();
 if(this.cuenta.stopTimer() > 1){
-this.texto.text = this.cuenta.stopTimer()/1000+" s";
+  var tiempo =this.cuenta.stopTimer()/1000;
+  this.tiempos.push(tiempo);
+this.texto.text =tiempo +" s";
 }
 button3 = game.add.button(game.world.centerX-80, 400, 'button3', adelante, this, 2, 1, 0);
 }
@@ -147,6 +149,9 @@ function render() {
         //  console.log((Math.floor)(timer.ms/1000));
 
 
+
+}
+function final(){
 
 }
  var Cuenta = function(){
@@ -163,17 +168,9 @@ function endtimer() {
       game.time.reset();
       timer =game.time.create();
   }
-function final(){
-	for(var i = 0; i < 20 ; i++){
-       var vida = this.game.add.sprite(250+ i*30, 230 , 'corasao');
-	   var texto = this.game.add.text(0,i*15,i +"."+ this.tiempos[i]);
-  texto.font = "Times New Roman";
-  texto.fontSize = 15;
-  texto.fill = "white";
-	}
-}
-function adelante(){
 
+function adelante(){
+console.log(this.tiempos);
 this.cuenta.startTimer();
   button3.destroy();
   this.texto.text =" ";
@@ -181,25 +178,49 @@ this.cuenta.startTimer();
 if(this.set == 1){
   this.texto2.text = this.preguntas2[this.it];//this.preguntas[this.it];
 }
-else{
+if(this.set == 0) {
     this.texto2.text = this.preguntas[this.it];
 }
-this.it++;
-if(this.it == 40)  final();
+if(this.it != 40)  this.it ++;
+else {
+  console.log("final");
+  for(var i = 0; i< 20 ; i++){
+var q = i+1;
+  this.texto3= game.add.text(200,i*20,q+". "+ this.tiempos[i]);
+this.texto3.font = "Times New Roman";
+ this.texto3.fontSize = 20;
+ this.texto3.fill = "white";
+  }
+  for(var i = 0; i< 20 ; i++){
+    var q = i+21;
+  this.texto3= game.add.text(400,i*20,q+". "+ this.tiempos[i+20]);
+this.texto3.font = "Times New Roman";
+ this.texto3.fontSize = 20;
+ this.texto3.fill = "white";
+  }
+  button1.destroy();
+  button2.destroy();
+  game.paused= true;
+
+}
+if(!game.paused){
   button1 = game.add.button(game.world.centerX-300, 400, 'button5', actionOnClick, this, 2, 1, 0);
   button2 = game.add.button(game.world.centerX+150, 400, 'button4', actionOnClick, this, 2, 1, 0);
+}
   //timer = game.time.create();
 
 }
 
 function actionOnClick () {
+
   this.texto2.text =" ";
 button2.destroy();
 button1.destroy();
 if(this.cuenta.stopTimer() > 1){
-	var tiempo  =this.cuenta.stopTimer()/1000;
-	this.tiempos.push(tiempo);
-this.texto.text = tiempo +" s";
+var  tiempo= this.cuenta.stopTimer()/1000;
+this.tiempos.push(tiempo);
+//console.log(this.tiempos);
+this.texto.text = tiempo+" s";
 }
 button3 = game.add.button(game.world.centerX-80, 400, 'button3', adelante, this, 2, 1, 0);
 
