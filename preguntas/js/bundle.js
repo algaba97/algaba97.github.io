@@ -184,6 +184,7 @@ if(this.set == 1){
 else{
     this.texto2.text = this.preguntas[this.it];
 }
+this.it++;
 if(this.it == 40)  final();
   button1 = game.add.button(game.world.centerX-300, 400, 'button5', actionOnClick, this, 2, 1, 0);
   button2 = game.add.button(game.world.centerX+150, 400, 'button4', actionOnClick, this, 2, 1, 0);
