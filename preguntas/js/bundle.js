@@ -10,6 +10,7 @@ function preload() {
     game.load.spritesheet('button5', 'assets/buttons/verdadero.png', 193, 71);
     game.load.image('background','assets/misc/starfield.jpg');
     this.tiempos= new Array();
+	game.desiredFps =0;
 
 }
 
