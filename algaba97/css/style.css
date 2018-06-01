@@ -215,7 +215,7 @@ color: #fff;
 }
 
 .main-section{
-	padding:20px 0 20px;
+	padding:60px 0 20px;
 }
 
 
@@ -235,6 +235,17 @@ color: #fff;
 	font-style:normal;
 	font-size:38px;
 	display:block;
+	color:#222;
+	font-family: 'FontAwesome';
+	line-height:38px;
+}
+.service-list-col1b{
+	float:center;
+	}
+.service-list-col1b i{
+	font-style:normal;
+	font-size:38px;
+	
 	color:#222;
 	font-family: 'FontAwesome';
 	line-height:38px;
